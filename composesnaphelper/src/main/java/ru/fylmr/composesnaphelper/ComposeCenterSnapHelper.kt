@@ -82,13 +82,13 @@ internal fun LazyListState.getCentralItem(): LazyListItemInfo? {
 /**
  * [ComposeCenterSnapHelper] decides when to snap to the target view.
  *
- * @param parentViewWidth main dimension size of the container (e.g. width for LazyRow)
+ * @param parentSize main dimension size of the container (e.g. width for LazyRow)
  * @param content a block which describes the content. Inside this block, you will have
  * access to [LazyListState].
  */
 @Composable
 fun ComposeCenterSnapHelper(
-    @Px parentViewWidth: Int,
+    @Px parentSize: Int,
     content: @Composable (LazyListState) -> Unit
 ) {
     val isSwipingState = rememberIsSwipingState()
@@ -106,7 +106,7 @@ fun ComposeCenterSnapHelper(
                 // current item start position (centralItem.offset)
                 // and it desired start position (difference between half of parent and half of item sizes)
 
-                val halfParent = parentViewWidth / 2
+                val halfParent = parentSize / 2
                 val desiredStartPosition = halfParent - centralItem.size / 2f
                 val actualStartPosition = centralItem.offset
                 val offset = actualStartPosition - desiredStartPosition
